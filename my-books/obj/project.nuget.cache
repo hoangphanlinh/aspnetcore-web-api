@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "O4lqMZDHOiEfyZAua1c1/HzMYTAkbnCfQlMED7bq5XaTXv48cvCbJ1RmM1fr37dCzGoEeJ0Xsmb3DLfXIg/XsQ==",
+  "dgSpecHash": "0ZmecXSwiKrim55mNXqkvSg5Q6M/fnQt8ot1Y3vaWvV+F+n3P/GP7E/158QLJS9FuIclUEklrQAGmGz+9VvzNg==",
   "success": true,
   "projectFilePath": "D:\\Workspace\\API\\my-books\\my-books\\my-books.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ngoth\\.nuget\\packages\\bootstrap\\5.3.0\\bootstrap.5.3.0.nupkg.sha512",
     "C:\\Users\\ngoth\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\ngoth\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\ngoth\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

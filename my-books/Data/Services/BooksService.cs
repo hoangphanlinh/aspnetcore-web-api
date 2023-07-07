@@ -41,27 +41,62 @@ namespace my_books.Data.Services
             return _context.Books.FirstOrDefault(n=>n.Id == bookId);
         }
 
-        public Book UpdateBookById(int bookId, BooksVM book)
+        public Book UpdateBookById(BooksVM book)
         {
-            var _book = _context.Books.FirstOrDefault(n => n.Id == bookId);
-            if(_book != null)
+            if(book==null || book.Id == 0)
             {
-                _book.Title = book.Title;
-                _book.Description = book.Description;
-                _book.IsRead = book.IsRead;
-                _book.DateRead = book.IsRead ? book.DateRead : null;
-                _book.Rate = book.IsRead ? book.Rate : null;
-                _book.Genre = book.Genre;
-                _book.Author = book.Author;
-                _book.CoverUrl = book.CoverUrl;
-
-                _context.SaveChanges();
+                if(book == null)
+                {
+                    return BadRequest("Model data is valid");
+                }
+                else if(book.Id == 0)
+                {
+                    return BadRequest($"Book Id{book.Id} is valid");
+                }
             }
-            return _book;
+
+            try
+            {
+                var _book = _context.Books.Find(book.Id);
+                if(_book == null)
+                {
+                    return NotFound($"Book not found with id{book.Id}");
+                }
+                else
+                {
+                    _book.Title = book.Title;
+                    _book.Description = book.Description;
+                    _book.IsRead = book.IsRead;
+                    _book.DateRead = book.IsRead ? book.DateRead : null;
+                    _book.Rate = book.IsRead ? book.Rate : null;
+                    _book.Genre = book.Genre;
+                    _book.Author = book.Author;
+                    _book.CoverUrl = book.CoverUrl;
+
+                    _context.SaveChanges();
+                    return _book;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
+
+        private Book NotFound(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Book BadRequest(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteBookById(int bookId)
         {
-            var _book = _context.Books.FirstOrDefault(n => n.Id == bookId);
+            var _book = _context.Books.Find(bookId);
             if(_book != null)
             {
                 _context.Books.Remove(_book);

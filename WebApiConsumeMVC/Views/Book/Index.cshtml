@@ -1,0 +1,104 @@
+﻿@model IEnumerable<WebApiConsumeMVC.Models.BookViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="PlaceHolderHere"></div>
+<div class="table-responsive">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Manage <b>Books</b></h2>
+                </div>
+                <div class="col-sm-6">
+                    <button data-target="#addEmployeeModal" class="btn btn-success" data-toggle="modal" onclick="addBook()"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></button>
+                    @*<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>*@
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover" id="bookTable">
+            <thead>
+                <tr>
+                    <th>BookId</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>IsRead</th>
+                    <th>DateRead</th>
+                    <th>Rate</th>
+                    <th>Genre</th>
+                    <th>Author</th>
+                    <th>ConverURL</th>
+                    <th>DateAdded</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>
+                            @*<span class="custom-checkbox">
+                                    <input type="checkbox" id="checkbox1" name="@item.IsRead" value="@item.IsRead">
+                                    <label for="checkbox1"></label>
+                                </span>*@
+                            @Html.DisplayFor(modelItem => item.IsRead)
+                        </td>
+                        <td>@item.DateRead</td>
+                        <td>@item.Rate</td>
+                        <td>@item.Genre</td>
+                        <td>@item.Author</td>
+                        <td>@item.CoverUrl</td>
+                        <td>@item.DateAdded</td>
+                        <td>
+                            <a data-target="@("#editEmployeeModal-"+item.Id)" class="edit" data-toggle="modal" data-url="@Url.Action($"Edit/{item.Id}")" style="cursor:pointer"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                            @await Html.PartialAsync("Edit", item)
+                            <a href="@Url.Action("Delete",new {id = item.Id })"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+
+                           
+
+                        </td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+        @await Html.PartialAsync("Create",new BookViewModel())
+        <!--Paging-->
+        <div class="clearfix">
+            <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+            <ul class="pagination">
+                <li class="page-item disabled"><a href="#">Previous</a></li>
+                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                <li class="page-item"><a href="#" class="page-link">Next</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    function addBook() {
+        $.ajax({
+            type: "Get",
+            url: "/Book/Create",
+            success: function (result) {
+                $("#bookTable").html(result);
+                $("#addBook").modal('show');
+            }
+        });
+    }
+    function ShowModal(id) {
+        $("#deleteEmployeeModal").val(id);
+        $("")
+    }
+
+    
+</script>
+

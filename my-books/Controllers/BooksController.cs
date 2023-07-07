@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace my_books.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -18,31 +18,32 @@ namespace my_books.Controllers
         {
             _booksService = booksService;
         }
-        [HttpGet("get-all-books")]
+        
+        [HttpGet]
         public IActionResult GetAllBooks()
         {
             var allBooks = _booksService.GetAllBooks();
             return Ok(allBooks);
         }
-        [HttpGet("get-book-by-id/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetBookById(int id)
         {
             var book = _booksService.GetBookById(id);
             return Ok(book);
         }
-        [HttpPost("add-book")]
+        [HttpPost]
         public IActionResult AddBook([FromBody]BooksVM book)
         {
             _booksService.AddBook(book);
             return Ok();
         }
-        [HttpPut("update-book-by-id/{id}")]
-        public IActionResult UpdateBook(int id, [FromBody]BooksVM book)
+        [HttpPut]
+        public IActionResult UpdateBook([FromBody]BooksVM book)
         {
-            var updatebook = _booksService.UpdateBookById(id, book);
+            var updatebook = _booksService.UpdateBookById(book);
             return Ok(updatebook);
         }
-        [HttpDelete("delete-book-by-id/{id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteBookById(int id)
         {
             _booksService.DeleteBookById(id);

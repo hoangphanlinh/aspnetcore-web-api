@@ -65,3 +65,4 @@ D:\Workspace\API\my-books\my-books\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCor
 D:\Workspace\API\my-books\my-books\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Workspace\API\my-books\my-books\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\Workspace\API\my-books\my-books\obj\Debug\netcoreapp3.1\my-books.MvcApplicationPartsAssemblyInfo.cs
+D:\Workspace\API\my-books\my-books\bin\Debug\netcoreapp3.1\my-books.Views.dll
